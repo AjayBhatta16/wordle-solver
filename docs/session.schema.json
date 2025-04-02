@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "correct": {
+        "type": "object",
+        "properties": {
+          "ch_1": {
+            "type": "string"
+          },
+          "ch_2": {
+            "type": "string"
+          },
+          "ch_3": {
+            "type": "string"
+          },
+          "ch_4": {
+            "type": "string"
+          },
+          "ch_5": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ch_1",
+          "ch_2",
+          "ch_3",
+          "ch_4",
+          "ch_5"
+        ]
+      },
+      "misplaced": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "pos": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value",
+              "pos"
+            ]
+          }
+        ]
+      },
+      "incorrect": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "notwords": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    }
+}
