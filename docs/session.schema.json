@@ -65,5 +65,25 @@
           }
         ]
       }
+    },
+    "example": {
+      "correct": {
+        "ch_1": "",
+        "ch_2": "R",
+        "ch_3": "",
+        "ch_4": "S",
+        "ch_5": ""
+      },
+      "misplaced": [
+        {
+          "value": "A",
+          "pos": 1
+        }
+      ],
+      "incorrect": [
+        "O",
+        "E"
+      ],
+      "notwords": []
     }
 }
