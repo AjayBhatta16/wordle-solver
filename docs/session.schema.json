@@ -2,6 +2,14 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "properties": {
+      "guessSequence": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      },
       "correct": {
         "type": "object",
         "properties": {
@@ -40,11 +48,15 @@
               },
               "pos": {
                 "type": "integer"
+              },
+              "duplicate": {
+                "type": "boolean"
               }
             },
             "required": [
               "value",
-              "pos"
+              "pos",
+              "duplicate"
             ]
           }
         ]
@@ -53,7 +65,19 @@
         "type": "array",
         "items": [
           {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "duplicate": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "value",
+              "duplicate"
+            ]
           }
         ]
       },
@@ -77,12 +101,19 @@
       "misplaced": [
         {
           "value": "A",
-          "pos": 1
+          "pos": 1,
+          "duplicate": false
         }
       ],
       "incorrect": [
-        "O",
-        "E"
+        {
+          "value": "O",
+          "duplicate": false
+        },
+        {
+          "value": "E",
+          "duplicate": false
+        }
       ],
       "notwords": []
     }
