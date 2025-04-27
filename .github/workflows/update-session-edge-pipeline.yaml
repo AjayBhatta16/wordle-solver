@@ -2,7 +2,8 @@ name: Deploy Update-Session Edge Function
 on:
   push:
     paths:
-      - "supabase/functions/update-session"
+      - "supabase/functions/update-session/**"
+      - ".github/workflows/update-session-edge-pipeline.yaml"
     branches:
       - main
 
