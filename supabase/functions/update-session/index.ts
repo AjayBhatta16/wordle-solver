@@ -6,8 +6,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 import { createClient } from 'jsr:@supabase/supabase-js@2'
 
-console.log("Hello from Functions!")
-
 Deno.serve(async (req) => {
   try {
     const supabase = createClient(
@@ -16,16 +14,33 @@ Deno.serve(async (req) => {
       { global: { headers: { Authorization: req.headers.get('Authorization')! } } }
     )
 
-    const { data, error } = await supabase.from('table_name').select('*')
+    const { id, sessionData } = req.json()
+    
+    const { data, error } = !!id 
+      ? supabase
+          .from('sessions')
+          .update({ session_data: sessionData })
+          .eq('id', id)
+          .select('id', 'session_data')
+          .single()
+      : supabase
+          .from('sessions')
+          .insert({ session_data: sessionData })
+          .select('id', 'session_data')
+          .single()
 
-    if (error) {
+    if (!!error) {
       throw error
     }
 
-    return new Response(JSON.stringify({ data }), {
+    return new Response(JSON.stringify({ 
+      id: data.id,
+      sessionData: data.session_data
+    }), {
       headers: { 'Content-Type': 'application/json' },
       status: 200,
     })
+
   } catch (err) {
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
