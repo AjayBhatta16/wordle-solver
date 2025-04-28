@@ -5,18 +5,44 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 
-console.log("Hello from Functions!")
-
 Deno.serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
+  if (req.method !== "GET") {
+    return new Response("Method Not Allowed", { status: 405 });
   }
 
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
+  try {
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+      { global: { headers: { Authorization: req.headers.get('Authorization')! } } }
+    )
+    
+    const url = new URL(req.url)
+    const id = url.searchParams.get('id')
+
+    const { data, error } = supabase
+      .from('sessions')
+      .eq('id', id)
+      .select('*')
+
+    if (!!error) {
+      throw error 
+    }
+    
+    return new Response(JSON.stringify({ 
+      id: data.id,
+      sessionData: data.session_data
+    }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 200,
+    })
+
+  } catch (err) {
+    return new Response(JSON.stringify({ message: err?.message ?? err }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 500 
+    })
+  }
 })
 
 /* To invoke locally:

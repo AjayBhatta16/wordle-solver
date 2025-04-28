@@ -7,6 +7,10 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 import { createClient } from 'jsr:@supabase/supabase-js@2'
 
 Deno.serve(async (req) => {
+  if (req.method !== "POST") {
+    return new Response("Method Not Allowed", { status: 405 });
+  }
+  
   try {
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
@@ -15,7 +19,7 @@ Deno.serve(async (req) => {
     )
 
     const { id, sessionData } = req.json()
-    
+
     const { data, error } = !!id 
       ? supabase
           .from('sessions')
