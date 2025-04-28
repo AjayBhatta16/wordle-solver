@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
     const url = new URL(req.url)
     const id = url.searchParams.get('id')
 
-    const { data, error } = supabase
+    const { data, error } = await supabase
       .from('sessions')
       .eq('id', id)
       .select('*')
@@ -40,7 +40,7 @@ Deno.serve(async (req) => {
 
   } catch (err) {
     console.log(`Internal Server Error: ${err}`)
-    
+
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500 
