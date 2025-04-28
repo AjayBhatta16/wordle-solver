@@ -19,7 +19,10 @@ Deno.serve(async (req) => {
     )
     
     const url = new URL(req.url)
+    console.log('URL:', url)
+
     const id = url.searchParams.get('id')
+    console.log('ID:', id)
 
     const { data, error } = await supabase
       .from('sessions')
