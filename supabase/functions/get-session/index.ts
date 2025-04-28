@@ -4,6 +4,7 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
+import { createClient } from 'jsr:@supabase/supabase-js@2'
 
 Deno.serve(async (req) => {
   if (req.method !== "GET") {
@@ -28,7 +29,7 @@ Deno.serve(async (req) => {
     if (!!error) {
       throw error 
     }
-    
+
     return new Response(JSON.stringify({ 
       id: data.id,
       sessionData: data.session_data

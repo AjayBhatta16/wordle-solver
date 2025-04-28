@@ -1,18 +1,15 @@
-name: Deploy Update-Session Edge Function
+name: Deploy Supabase Edge Functions
 on:
   push:
     paths:
-      - "supabase/functions/update-session/**"
-      - ".github/workflows/update-session-edge-pipeline.yaml"
+      - "supabase/functions/**"
+      - ".github/workflows/edge-functions-pipeline.yaml"
     branches:
       - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: supabase/functions/update-session
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
