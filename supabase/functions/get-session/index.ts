@@ -23,8 +23,8 @@ Deno.serve(async (req) => {
 
     const { data, error } = await supabase
       .from('sessions')
-      .eq('id', id)
       .select('*')
+      .eq('id', id)
 
     if (!!error) {
       throw error 
