@@ -20,18 +20,20 @@ Deno.serve(async (req) => {
 
     const { id, sessionData } = await req.json()
 
-    const { data, error } = !!id 
-      ? supabase
-          .from('sessions')
-          .update({ session_data: sessionData })
-          .eq('id', id)
-          .select('id', 'session_data')
-          .single()
-      : supabase
-          .from('sessions')
-          .insert({ session_data: sessionData })
-          .select('id', 'session_data')
-          .single()
+    const { data, error } = await (
+      !!id 
+        ? supabase
+            .from('sessions')
+            .update({ session_data: sessionData })
+            .eq('id', id)
+            .select('id', 'session_data')
+            .single()
+        : supabase
+            .from('sessions')
+            .insert({ session_data: sessionData })
+            .select('id', 'session_data')
+            .single()
+    )
 
     console.log('Data:', data)
     console.log('Error:', error)
