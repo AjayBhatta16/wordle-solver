@@ -4,7 +4,7 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
-import { createClient } from 'jsr:@supabase/supabase-js@2'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 Deno.serve(async (req) => {
   if (req.method !== "POST") {
@@ -18,7 +18,7 @@ Deno.serve(async (req) => {
       { global: { headers: { Authorization: req.headers.get('Authorization')! } } }
     )
 
-    const { id, sessionData } = req.json()
+    const { id, sessionData } = await req.json()
 
     const { data, error } = !!id 
       ? supabase
@@ -32,6 +32,9 @@ Deno.serve(async (req) => {
           .insert({ session_data: sessionData })
           .select('id', 'session_data')
           .single()
+
+    console.log('Data:', data)
+    console.log('Error:', error)
 
     if (!!error) {
       throw error
@@ -47,7 +50,7 @@ Deno.serve(async (req) => {
 
   } catch (err) {
     console.log(`Internal Server Error: ${err}`)
-    
+
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500 
