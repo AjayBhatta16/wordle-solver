@@ -26,6 +26,9 @@ Deno.serve(async (req) => {
       .select('*')
       .eq('id', id)
 
+    console.log('Data:', data)
+    console.log('Error:', error)
+
     if (!!error) {
       throw error 
     }
@@ -39,7 +42,7 @@ Deno.serve(async (req) => {
     })
 
   } catch (err) {
-    console.log(`Internal Server Error: ${err}`)
+    console.log(`Internal Server Error: ${JSON.stringify(error)}`)
 
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
