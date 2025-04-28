@@ -39,6 +39,8 @@ Deno.serve(async (req) => {
     })
 
   } catch (err) {
+    console.log(`Internal Server Error: ${err}`)
+    
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500 

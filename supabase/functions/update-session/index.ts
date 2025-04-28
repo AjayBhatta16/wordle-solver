@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
   }
-  
+
   try {
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
@@ -46,6 +46,8 @@ Deno.serve(async (req) => {
     })
 
   } catch (err) {
+    console.log(`Internal Server Error: ${err}`)
+    
     return new Response(JSON.stringify({ message: err?.message ?? err }), {
       headers: { 'Content-Type': 'application/json' },
       status: 500 
