@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap');
+
+.fontdiner-swanky-regular {
+    font-family: "Fontdiner Swanky", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.text-custom-red {
+    color: #f30;
+}
+
+.text-custom-blue {
+    color: #03f;
+}
+
+.text-custom-purple {
+    color: #f3f;
+}
+
+.bg-custom-black {
+    background-color: #000;
+}
+
+html, body {
+    background-color: #000;
+}
+
+.w-67 {
+    width: 67%;
+}
+
+.swanky-button {
+    border-radius: 100%;
+    padding: 10px 20px;
+}
+
+.swanky-button:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.btn-custom-blue {
+    background-color: #03f;
+    color: #fff;
+}
+
+.btn-custom-red {
+    background-color: #f30;
+    color: #fff;
+}
