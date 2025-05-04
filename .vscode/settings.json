@@ -2,5 +2,7 @@
     "deno.enable": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
-    }
+    },
+    "typescript.suggest.autoImports": true,
+    "javascript.suggest.autoImports": true
 }
