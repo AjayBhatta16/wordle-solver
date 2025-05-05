@@ -12,7 +12,7 @@ export default function useCustomRouter() {
     }
 
     const goToSession = (sessionID) => {
-        navigate(`/sessions`)
+        navigate(`/sessions/test`)
     }
 
     return { goToHome, goToAbout, goToSession }

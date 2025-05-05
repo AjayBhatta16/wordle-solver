@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
+:root {
+    --custom-red: #f30;
+    --custom-blue: #03f;
+    --custom-purple: #f3f;
+    --tile-size: 90px;
+}
+
 .fontdiner-swanky-regular {
     font-family: "Fontdiner Swanky", serif;
     font-weight: 400;
@@ -15,27 +22,27 @@
 }
   
 .text-custom-red {
-    color: #f30;
+    color: var(--custom-red);
 }
 
 .bg-custom-red {
-    background-color: #f30;
+    background-color: var(--custom-red);
 }
 
 .text-custom-blue {
-    color: #03f;
+    color: var(--custom-blue);
 }
 
 .bg-custom-blue {
-    background-color: #03f;
+    background-color: var(--custom-blue);
 }
 
 .text-custom-purple {
-    color: #f3f;
+    color: var(--custom-purple);
 }
 
 .bg-custom-purple {
-    background-color: #f3f;
+    background-color: var(--custom-purple);
 }
 
 .bg-custom-black {
@@ -61,17 +68,17 @@ html, body {
 }
 
 .btn-custom-blue {
-    background-color: #03f;
+    background-color: var(--custom-blue);
     color: #fff;
 }
 
 .btn-custom-red {
-    background-color: #f30;
+    background-color: var(--custom-red);
     color: #fff;
 }
 
 .btn-custom-purple {
-    background-color: #f3f;
+    background-color: var(--custom-purple);
     color: #fff;
 }
 
@@ -90,4 +97,65 @@ html, body {
 .step-box > p {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+}
+
+.word-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.not-a-word-button {
+    background-color: var(--custom-red);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+}
+
+.not-a-word-button:hover {
+    background-color: #d20;
+    transform: scale(1.1);
+}
+
+.submit-button {
+    background-color: var(--custom-blue);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+}
+
+.submit-button:hover {
+    background-color: #028;
+    transform: scale(1.1);
+}
+
+.feedback-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+.letter-tile-container {
+    width: var(--tile-size);
+}
+
+.letter-tile {
+    height: var(--tile-size);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 50px;
+}
+
+.feedback-button:hover {
+    color: white;
+    transform: scale(1.15);
 }
