@@ -2,6 +2,12 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "properties": {
+      "sessionId": {
+        "type": "string"
+      },
+      "lastGuessFeedback": {
+        "type": "string"
+      },
       "guessSequence": {
         "type": "array",
         "items": [
@@ -115,6 +121,6 @@
           "duplicate": false
         }
       ],
-      "notwords": []
+      "notWords": []
     }
 }
