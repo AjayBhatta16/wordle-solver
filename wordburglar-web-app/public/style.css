@@ -5,6 +5,10 @@
     --custom-red: #f30;
     --custom-blue: #03f;
     --custom-purple: #f3f;
+    --custom-muted-red: #810;
+    --custom-muted-blue: #018;
+    --custom-muted-purple: #818;
+    --custom-muted-white: #aaa;
     --tile-size: 90px;
 }
 
@@ -27,6 +31,12 @@
 
 .bg-custom-red {
     background-color: var(--custom-red);
+    color: white;
+}
+
+.bg-custom-muted-red {
+    background-color: var(--custom-muted-red);
+    color: var(--custom-muted-white);
 }
 
 .text-custom-blue {
@@ -35,6 +45,17 @@
 
 .bg-custom-blue {
     background-color: var(--custom-blue);
+    color: white;
+}
+
+.bg-custom-muted-blue {
+    background-color: var(--custom-muted-blue);
+    color: var(--custom-muted-white);
+}
+
+.bg-custom-muted-white {
+    background-color: var(--custom-muted-white);
+    color: #000;
 }
 
 .text-custom-purple {
@@ -43,6 +64,12 @@
 
 .bg-custom-purple {
     background-color: var(--custom-purple);
+    color: white;
+}
+
+.bg-custom-muted-purple {
+    background-color: var(--custom-muted-purple);
+    color: var(--custom-muted-white);
 }
 
 .bg-custom-black {

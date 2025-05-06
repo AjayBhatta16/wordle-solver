@@ -4,7 +4,7 @@ import { ajax } from 'rxjs/ajax'
 export default class SessionService {
     constructor() {}
 
-    async newSession() {
+    newSession() {
         return of('test-id')
     }
 
