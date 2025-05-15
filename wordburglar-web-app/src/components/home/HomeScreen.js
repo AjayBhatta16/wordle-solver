@@ -28,7 +28,7 @@ export default function HomeScreen() {
                         <SwankyButton
                             textContent="Guess a Word"
                             colorClass="btn-custom-blue"
-                            onClick={customRouter.goToSession}
+                            onClick={() => customRouter.goToSession()}
                         />
                         <SwankyButton
                             textContent="How it Works"

@@ -7,13 +7,27 @@ import { switchMap, map, catchError } from 'rxjs/operators'
 import { of } from 'rxjs';
 
 const newSessionEpic = (action$) => {
+    console.log('newSessionEpic - start')
     return action$.pipe(
         ofType(SessionActions.TypeConstants.NEW_SESSION_REQUEST),
         switchMap(() => {
             const sessionService = new SessionService();
-            return sessionService.createSession().pipe(
+            return sessionService.newSession().pipe(
                 map((session) => SessionActions.newSessionSuccess(session)),
                 catchError((error) => of(SessionActions.newSessionFailure(error)))
+            )
+        })
+    )
+}
+
+const getSessionEpic = (action$) => {
+    return action$.pipe(
+        ofType(SessionActions.TypeConstants.GET_SESSION_REQUEST),
+        switchMap((action) => {
+            const sessionService = new SessionService();
+            return sessionService.getSession(action.sessionId).pipe(
+                map((session) => SessionActions.getSessionSuccess(session)),
+                catchError((error) => of(SessionActions.getSessionFailure(error)))
             )
         })
     )
@@ -48,6 +62,7 @@ const updateSessionDataEpic = (action$) => {
 
 const sessionEpics = combineEpics(
     newSessionEpic,
+    getSessionEpic,
     nextWordEpic,
     nextWordSuccessEpic,
     updateSessionDataEpic

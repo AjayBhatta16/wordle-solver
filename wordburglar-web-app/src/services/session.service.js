@@ -5,10 +5,21 @@ export default class SessionService {
     constructor() {}
 
     newSession() {
-        return of('test-id')
+        console.log('newSession - start')
+        return of({
+            sessionId: 'test-id',
+            guessSequence: ['AROSE']
+        })
     }
 
-    async nextWordRequest(session) {
+    getSession(sessionId) {
+        return of({
+            sessionId: sessionId,
+            guessSequence: ['AROSE']
+        })
+    }
+
+    getNextWord(session) {
         return of('AROSE')
     }
 }

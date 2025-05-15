@@ -2,6 +2,9 @@ export const TypeConstants = {
     NEW_SESSION_REQUEST: 'NEW_SESSION_REQUEST',
     NEW_SESSION_SUCCESS: 'NEW_SESSION_SUCCESS',
     NEW_SESSION_FAILURE: 'NEW_SESSION_FAILURE',
+    GET_SESSION_REQUEST: 'GET_SESSION_REQUEST',
+    GET_SESSION_SUCCESS: 'GET_SESSION_SUCCESS',
+    GET_SESSION_FAILURE: 'GET_SESSION_FAILURE',
     NEXT_WORD_REQUEST: 'NEXT_WORD_REQUEST',
     NEXT_WORD_SUCCESS: 'NEXT_WORD_SUCCESS',
     NEXT_WORD_FAILURE: 'NEXT_WORD_FAILURE',
@@ -15,6 +18,21 @@ export const newSessionRequest = () => ({
 export const newSessionSuccess = (session) => ({
     type: TypeConstants.NEW_SESSION_SUCCESS,
     session,
+})
+
+export const getSessionRequest = (sessionId) => ({
+    type: TypeConstants.GET_SESSION_REQUEST,
+    sessionId,
+})
+
+export const getSessionSuccess = (session) => ({
+    type: TypeConstants.GET_SESSION_SUCCESS,
+    session,
+})
+
+export const getSessionFailure = (error) => ({
+    type: TypeConstants.GET_SESSION_FAILURE,
+    error,
 })
 
 export const newSessionFailure = (error) => ({

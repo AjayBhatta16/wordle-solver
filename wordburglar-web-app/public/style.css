@@ -186,3 +186,7 @@ html, body {
     color: white;
     transform: scale(1.15);
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

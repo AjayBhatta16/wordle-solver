@@ -15,23 +15,21 @@ export default function Header() {
             </button>
             <div className="collapse navbar-collapse nunito-light" id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto">
-                    <li className="nav-item" onClick={customRouter.goToSession}>
-                        <a 
-                            className="nav-link text-white" 
-                            href="" 
+                    <li className="nav-item" onClick={() => customRouter.goToSession()}>
+                        <span 
+                            className="nav-link text-white cursor-pointer" 
                             style={{ textDecoration: 'none' }}
                         >
                             New Session
-                        </a>
+                        </span>
                     </li>
                     <li className="nav-item" onClick={customRouter.goToAbout}>
-                        <a 
-                            className="nav-link text-white" 
-                            href="" 
+                        <span 
+                            className="nav-link text-white cursor-pointer" 
                             style={{ textDecoration: 'none' }}
                         >
                             About
-                        </a>
+                        </span>
                     </li>
                 </ul>
             </div>

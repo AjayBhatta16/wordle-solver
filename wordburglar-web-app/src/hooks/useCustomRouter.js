@@ -1,11 +1,21 @@
 import { useNavigate } from 'react-router-dom'
-import { take } from 'rxjs'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
-import SessionService from '../services/session.service'
+import * as SessionActions from '../state/actions/session.actions'
 
 export default function useCustomRouter() {
     const navigate = useNavigate()
-    const sessionService = new SessionService()
+    const dispatch = useDispatch()
+
+    const session = useSelector((state) => state.session.session)
+
+    useEffect(() => {
+        console.log('useCustomRouter - useEffect - session:', session)
+        if (session.sessionId) {
+            navigate(`/sessions/${session.sessionId}`)
+        }
+    }, [session, navigate])
 
     const goToHome = () => {
         navigate('/')
@@ -16,10 +26,11 @@ export default function useCustomRouter() {
     }
 
     const goToSession = (sessionID) => {
+        console.log('goToSession - sessionID:', sessionID)
         if (!!sessionID) {
-            sessionService.newSession().pipe(take(1)).subscribe((session) => {
-                navigate(`/sessions/${session}`)
-            })
+            dispatch(SessionActions.getSessionRequest(sessionID))
+        } else {
+            dispatch(SessionActions.newSessionRequest())
         }
     }
 

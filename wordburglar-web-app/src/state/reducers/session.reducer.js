@@ -17,18 +17,38 @@ const initialState = {
 export const session = (state = initialState, action) => {
     switch (action.type) {
         case SessionActions.TypeConstants.NEW_SESSION_REQUEST:
+            console.log('NEW_SESSION_REQUEST - reducer - start')
             return {
                 ...state,
                 loading: true,
                 error: null,
             }
         case SessionActions.TypeConstants.NEW_SESSION_SUCCESS:
+            console.log('NEW_SESSION_SUCCESS - reducer - start')
             return {
                 ...state,
                 loading: false,
                 session: action.session,
             }
         case SessionActions.TypeConstants.NEW_SESSION_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            }
+        case SessionActions.TypeConstants.GET_SESSION_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            }
+        case SessionActions.TypeConstants.GET_SESSION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                session: action.session,
+            }
+        case SessionActions.TypeConstants.GET_SESSION_FAILURE:
             return {
                 ...state,
                 loading: false,
