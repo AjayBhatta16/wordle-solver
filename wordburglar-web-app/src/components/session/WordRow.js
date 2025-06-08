@@ -1,11 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import LetterTile from './LetterTile'
 import * as ActiveWordActions from '../../state/actions/active-word.actions'
 
 export default function WordRow(props) {
     const dispatch = useDispatch()
+    const disabled = useSelector((state) => {
+        return state.activeWord.board.some(status => 
+            status === ActiveWordActions.GuessStatusTypes.BLANK
+        )
+    })
 
     const handleNotWord = () => {
         dispatch(ActiveWordActions.notAWord(props.word))
@@ -34,6 +39,7 @@ export default function WordRow(props) {
                             onClick={handleNotWord}
                         >Not A Word</button>
                         <button 
+                            disabled={disabled}
                             className="btn btn-primary"
                             onClick={handleSubmit}
                         >Submit</button>

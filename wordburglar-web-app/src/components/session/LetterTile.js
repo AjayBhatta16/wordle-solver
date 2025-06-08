@@ -25,11 +25,12 @@ export default function LetterTile(props) {
 
     const status = useSelector((state) => {
         if (props.active) {
-            console.log(state.activeWord.board[props.index])
             return state.activeWord.board[props.index]
         }
 
-        return state.activeWord.wordHistory[props.wordHistoryIndex]?.statusCodes[props.index]
+        return state.activeWord.wordHistory[
+            state.activeWord.wordHistory.length - props.wordHistoryIndex
+        ]?.statusCodes[props.index]
     })
 
     return (
