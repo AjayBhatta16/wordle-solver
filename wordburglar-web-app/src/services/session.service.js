@@ -8,14 +8,22 @@ export default class SessionService {
         console.log('newSession - start')
         return of({
             sessionId: 'test-id',
-            guessSequence: ['AROSE']
+            guessSequence: [],
+            notWords: [],
+            correct: {},
+            misplaced: [],
+            incorrect: []
         })
     }
 
     getSession(sessionId) {
         return of({
             sessionId: sessionId,
-            guessSequence: ['AROSE']
+            guessSequence: [],
+            notWords: [],
+            correct: {},
+            misplaced: [],
+            incorrect: []
         })
     }
 

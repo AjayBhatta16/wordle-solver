@@ -68,7 +68,7 @@ export const session = (state = initialState, action) => {
                     ...state.session,
                     ...action.session,
                     guessSequence: [
-                        ...action.session.guessSequence,
+                        ...state.session.guessSequence,
                         action.word
                     ]
                 }
@@ -85,7 +85,7 @@ export const session = (state = initialState, action) => {
                 session: {
                     ...state.session,
                     notWords: [
-                        ...state.session.notWords,
+                        ...(state.session.notWords ?? []),
                         action.session.notAWord,
                     ],
                     ...action.session,
