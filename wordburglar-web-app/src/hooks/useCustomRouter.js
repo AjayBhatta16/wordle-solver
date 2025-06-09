@@ -11,7 +11,6 @@ export default function useCustomRouter() {
     const session = useSelector((state) => state.session.session)
 
     useEffect(() => {
-        console.log('useCustomRouter - useEffect - session:', session)
         if (session.sessionId) {
             navigate(`/sessions/${session.sessionId}`)
         }

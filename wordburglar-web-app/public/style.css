@@ -190,3 +190,7 @@ html, body {
 .cursor-pointer {
     cursor: pointer;
 }
+
+a.link-underline-none:hover {
+    text-decoration: none;
+}

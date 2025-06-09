@@ -23,14 +23,16 @@ export default function Header() {
                             New Session
                         </span>
                     </li>
-                    <li className="nav-item" onClick={customRouter.goToAbout}>
-                        <span 
-                            className="nav-link text-white cursor-pointer" 
-                            style={{ textDecoration: 'none' }}
-                        >
-                            About
-                        </span>
-                    </li>
+                    <a href="/about" className="link-underline-none">
+                        <li className="nav-item">
+                            <span 
+                                className="nav-link text-white cursor-pointer" 
+                                style={{ textDecoration: 'none' }}
+                            >
+                                About
+                            </span>
+                        </li>
+                    </a>
                 </ul>
             </div>
         </nav>
