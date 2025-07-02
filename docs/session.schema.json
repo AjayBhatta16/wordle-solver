@@ -5,6 +5,9 @@
       "sessionId": {
         "type": "string"
       },
+      "lastUpdatedTimeStamp": {
+        "type": "integer"
+      },
       "lastGuessFeedback": {
         "type": "string"
       },
@@ -97,6 +100,8 @@
       }
     },
     "example": {
+      "sessionId": "00000000-0000-0000-0000-000000000000",
+      "lastUpdatedTimeStamp": 1700000000,
       "correct": {
         "ch_1": "",
         "ch_2": "R",
