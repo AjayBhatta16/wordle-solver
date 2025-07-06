@@ -1,4 +1,4 @@
-name: Deploy to App Engine
+name: Deploy CommonSolutionSearch Function
 
 on:
   push:
@@ -21,12 +21,12 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_DEPLOYMENT_KEY }}
 
-    - name: Deploy serverless function
-      uses: google-github-actions/deploy-cloud-functions@v2
-      with:
-        name: common-solution-search
-        runtime: go123
-        region: us-east4
-        entry_point: CommonSolutionSearch
-        source_dir: gcp-functions/common-solution-search
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+    - name: Setup GCloud CLI
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Deploy Cloud Function
+      run: |
+        cd gcp-functions/common-solution-search
+        chmod 700 deploy.sh
+        ./deploy.sh
+        
