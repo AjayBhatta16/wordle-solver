@@ -10,7 +10,7 @@ type PubSubMessage struct {
 }
 
 func CleanupTimer(ctx context.Context, m PubSubMessage) error {
-	log.Println("CleanupTimer")
+	log.Println("CleanupTimer - CI/CD pipeline succeeded")
 
 	return nil
 }

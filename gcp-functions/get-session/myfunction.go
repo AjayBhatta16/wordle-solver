@@ -6,5 +6,5 @@ import (
 )
 
 func GetSession(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "GetSession")
+	fmt.Fprintf(w, "GetSession - CI/CD pipeline succeeded")
 }

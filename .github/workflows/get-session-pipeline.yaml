@@ -1,0 +1,32 @@
+name: Deploy GetSession Function
+
+on:
+  push:
+    paths:
+      - ".github/workflows/get-session-pipeline.yaml"
+      - "gcp-functions/get-session/**"
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Authenticate to GCP
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_DEPLOYMENT_KEY }}
+
+    - name: Setup GCloud CLI
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Deploy Cloud Function
+      run: |
+        cd gcp-functions/get-session
+        chmod 700 deploy.sh
+        ./deploy.sh
+        

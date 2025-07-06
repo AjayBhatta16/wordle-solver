@@ -1,3 +1,3 @@
 exports.computeNextWord = (req, res) => {
-  res.send('ComputeNextWord');
+  res.send('ComputeNextWord - CI/CD pipeline succeeded');
 };

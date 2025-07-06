@@ -6,5 +6,5 @@ import (
 )
 
 func GetNextWord(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "GetNextWord")
+	fmt.Fprintf(w, "GetNextWord - CI/CD pipeline succeeded")
 }
