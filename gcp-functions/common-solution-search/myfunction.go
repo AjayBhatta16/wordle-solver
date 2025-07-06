@@ -6,5 +6,5 @@ import (
 )
 
 func CommonSolutionSearch(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "CommonSolutionSearch")
+	fmt.Fprintf(w, "CommonSolutionSearch - CI/CD pipeline succeeded")
 }
