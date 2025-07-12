@@ -75,9 +75,7 @@ func GetDefaultSession() Session {
 func saveSession(client *firestore.Client, session Session) Session {
 	ctx := context.Background()
 
-	_, _, err := client.Collection("your-collection").Add(ctx, map[string]interface{}{
-		"hello": "world",
-	})
+	_, _, err := client.Collection("sessions").Add(ctx, session)
 
 	if err != nil {
 		fmt.Println("Firestore write error", http.StatusInternalServerError)
