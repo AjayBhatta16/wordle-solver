@@ -24,6 +24,10 @@ jobs:
     - name: Setup GCloud CLI
       uses: google-github-actions/setup-gcloud@v2
 
+    - name: Set environment variables
+      run: |
+        echo "GCP_PROJECT_NAME=${{ secrets.GCP_PROJECT_NAME }}" >> $GITHUB_ENV
+
     - name: Deploy Cloud Function
       run: |
         cd gcp-functions/get-session

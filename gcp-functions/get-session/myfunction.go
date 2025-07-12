@@ -16,7 +16,7 @@ import (
 
 func GetSession(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	dbClient, err := firestore.NewClient(ctx, "")
+	dbClient, err := firestore.NewClient(ctx, os.Getenv("PROJECT_ID"))
 
 	if err != nil {
 		http.Error(w, "Failed to create Firestore client:"+err.Error(), http.StatusInternalServerError)

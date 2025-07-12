@@ -5,4 +5,5 @@ gcloud functions deploy get-session \
   --source=. \
   --entry-point=GetSession \
   --trigger-http \
+  --set-env-vars PROJECT_ID=$GCP_PROJECT_NAME \
   --allow-unauthenticated
