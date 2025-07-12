@@ -1,0 +1,16 @@
+{
+    "sessionId": "00000000-0000-0000-0000-000000000000",
+    "lastUpdatedTimeStamp": 0,
+    "correct": {
+        "ch_1": "",
+        "ch_2": "",
+        "ch_3": "",
+        "ch_4": "",
+        "ch_5": ""
+    },
+    "misplaced": [],
+    "incorrect": [],
+    "notWords": [],
+    "guessSequence": ["AROSE"],
+    "lastGuessFeedback": ""
+}
