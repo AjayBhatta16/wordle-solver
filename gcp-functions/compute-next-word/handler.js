@@ -13,11 +13,15 @@ class ComputeNextWordHandler {
     }
 
     handle(request) {
-        console.log('Handling request:', request);
-        
+        console.log('ComputeNextWordHandler - Handling request:', request);
+
         const validWords = this.getValidWords(request.session);
 
+        console.log('ComputeNextWordHandler - Valid words:', validWords);
+
         const bestWord = this.getBestWord(validWords);
+
+        console.log('ComputeNextWordHandler - Best word:', bestWord);
 
         return { bestWord };
     }
