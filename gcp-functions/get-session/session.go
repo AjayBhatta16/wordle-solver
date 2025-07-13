@@ -1,14 +1,14 @@
 package myfunction
 
 type Session struct {
-	SessionId            string            `json:"sessionId"`
-	LastUpdatedTimeStamp int64             `json:"lastUpdatedTimeStamp"`
-	LastGuessFeedback    string            `json:"lastGuessFeedback"`
-	GuessSequence        []string          `json:"guessSequence"`
-	Correct              CorrectLetters    `json:"correct"`
-	Misplaced            []MisplacedLetter `json:"misplaced"`
-	Incorrect            []IncorrectLetter `json:"incorrect"`
-	NotWords             []string          `json:"notWords"`
+	SessionId            string            `json:"sessionId" firestore:"sessionId"`
+	LastUpdatedTimeStamp int64             `json:"lastUpdatedTimeStamp" firestore:"lastUpdatedTimeStamp"`
+	LastGuessFeedback    string            `json:"lastGuessFeedback" firestore:"lastGuessFeedback"`
+	GuessSequence        []string          `json:"guessSequence" firestore:"guessSequence"`
+	Correct              CorrectLetters    `json:"correct" firestore:"correct"`
+	Misplaced            []MisplacedLetter `json:"misplaced" firestore:"misplaced"`
+	Incorrect            []IncorrectLetter `json:"incorrect" firestore:"incorrect"`
+	NotWords             []string          `json:"notWords" firestore:"notWords"`
 	firestoreID          string
 }
 
