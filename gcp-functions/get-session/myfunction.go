@@ -64,7 +64,7 @@ func GetSessionID(url string) string {
 }
 
 func GetDefaultSession() Session {
-	file, err := os.Open("default-session.json")
+	file, err := os.Open("./default-session.json")
 	if err != nil {
 		log.Println("GETSESSION - Error opening default session file:", err)
 		return Session{}
