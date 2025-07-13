@@ -64,6 +64,9 @@ func GetSessionID(url string) string {
 }
 
 func GetDefaultSession() Session {
+	cwd, _ := os.Getwd()
+	log.Println("GETSESSION - Current working directory:", cwd)
+
 	file, err := os.Open("/workspace/default-session.json")
 	if err != nil {
 		log.Println("GETSESSION - Error opening default session file:", err)
