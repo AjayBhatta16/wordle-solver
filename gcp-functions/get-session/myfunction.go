@@ -12,7 +12,12 @@ import (
 
 	"cloud.google.com/go/firestore"
 	"github.com/google/uuid"
+
+	_ "embed"
 )
+
+//go:embed default-session.json
+var defaultSessionJSON []byte
 
 func GetSession(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
@@ -64,22 +69,8 @@ func GetSessionID(url string) string {
 }
 
 func GetDefaultSession() Session {
-	cwd, _ := os.Getwd()
-	log.Println("GETSESSION - Current working directory:", cwd)
-
-	file, err := os.Open("/workspace/default-session.json")
-	if err != nil {
-		log.Println("GETSESSION - Error opening default session file:", err)
-		return Session{}
-	}
-	defer file.Close()
-
 	var session Session
-	decoder := json.NewDecoder(file)
-	if err := decoder.Decode(&session); err != nil {
-		log.Println("GETSESSION - Error decoding default session:", err)
-		return Session{}
-	}
+	json.Unmarshal(defaultSessionJSON, &session)
 
 	session.LastUpdatedTimeStamp = time.Now().UnixMilli()
 	session.SessionId = uuid.NewString()
