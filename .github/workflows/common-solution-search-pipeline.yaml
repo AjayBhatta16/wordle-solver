@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/common-solution-search-pipeline.yaml"
       - "gcp-functions/common-solution-search/**"
+      - "gcp-functions/golang-models/**"
     branches:
       - main
 
@@ -15,6 +16,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Copy models to function directory
+      run: |
+        cd gcp-functions/common-solution-search
+        cp ../golang-models/*.go .
 
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v2
