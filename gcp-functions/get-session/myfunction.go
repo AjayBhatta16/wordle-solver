@@ -35,7 +35,19 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(session)
 	} else {
-		fmt.Fprintf(w, "GetSession - %s", sessionID)
+		session, err := GetSessionByID(dbClient, sessionID)
+
+		if err != nil {
+			http.Error(w, "Session not found: "+err.Error(), http.StatusNotFound)
+			return
+		}
+
+		session.LastUpdatedTimeStamp = time.Now().UnixMilli()
+
+		session = saveSession(dbClient, session)
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(session)
 	}
 }
 
@@ -83,4 +95,26 @@ func saveSession(client *firestore.Client, session Session) Session {
 	}
 
 	return session
+}
+
+func GetSessionByID(client *firestore.Client, sessionID string) (Session, error) {
+	ctx := context.Background()
+	iter := client.Collection("sessions").Where("sessionId", "==", sessionID).Limit(1).Documents(ctx)
+	doc, err := iter.Next()
+
+	if err != nil {
+		fmt.Println("Error getting session:", err)
+		return Session{}, err
+	}
+
+	var session Session
+	if err := doc.DataTo(&session); err != nil {
+		fmt.Println("Error decoding session data:", err)
+		return Session{}, err
+	}
+
+	session.SessionId = doc.Ref.ID
+	session.LastUpdatedTimeStamp = time.Now().UnixMilli()
+
+	return session, nil
 }
