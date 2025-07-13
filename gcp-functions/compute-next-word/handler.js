@@ -28,17 +28,18 @@ class ComputeNextWordHandler {
 
     getValidWords(session) {
         console.log('ComputeNextWordHandler - word count:', this.words.length);
+        
+        console.log('validateWord - correct count:', this.words.filter((word) => this.checkCorrect(session, word)).length);
+        console.log('validateWord - misplaced count:', this.words.filter((word) => this.checkMisplaced(session, word)).length);
+        console.log('validateWord - incorrect count:', this.words.filter((word) => this.checkIncorrect(session, word)).length);
+        console.log('validateWord - notwords count:', this.words.filter((word) => this.checkNotWords(session, word)).length);
+
         return this.words.filter(word =>
             this.validateWord(session, word)
         );
     }
 
     validateWord(session, word) {
-        console.log('validateWord - correct count:', this.words.filter(this.checkCorrect).length);
-        console.log('validateWord - misplaced count:', this.words.filter(this.checkMisplaced).length);
-        console.log('validateWord - incorrect count:', this.words.filter(this.checkIncorrect).length);
-        console.log('validateWord - notwords count:', this.words.filter(this.checkNotWords).length);
-        
         return this.checkCorrect(session, word) &&
             this.checkMisplaced(session, word) &&
             this.checkIncorrect(session, word) &&
