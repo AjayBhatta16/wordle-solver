@@ -75,7 +75,7 @@ for (let i = 0; i < 243; i++) {
     const next = handler.handle({ session: sessionObj }).bestWord;
 
     commonSolutions.push({
-        solutionKey: toBase3DigitArray(i).join(''),
+        solutionKey: bestWord + '-' + toBase3DigitArray(i).join(''),
         solution: next,
     });
 }

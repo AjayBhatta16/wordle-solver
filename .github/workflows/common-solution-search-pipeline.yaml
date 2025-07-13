@@ -22,6 +22,12 @@ jobs:
         cd gcp-functions/common-solution-search
         cp ../golang-models/*.go .
 
+    - name: Build Solution Search Index
+      run: |
+        cd gcp-functions/compute-next-word
+        npm run build-cs-idx
+        cp ./common-solutions.json ../common-solution-search/common-solutions.json
+
     - name: Authenticate to GCP
       uses: google-github-actions/auth@v2
       with:
