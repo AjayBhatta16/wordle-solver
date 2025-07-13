@@ -34,6 +34,11 @@ class ComputeNextWordHandler {
     }
 
     validateWord(session, word) {
+        console.log('validateWord - correct count:', this.words.filter(this.checkCorrect).length);
+        console.log('validateWord - misplaced count:', this.words.filter(this.checkMisplaced).length);
+        console.log('validateWord - incorrect count:', this.words.filter(this.checkIncorrect).length);
+        console.log('validateWord - notwords count:', this.words.filter(this.checkNotWords).length);
+        
         return this.checkCorrect(session, word) &&
             this.checkMisplaced(session, word) &&
             this.checkIncorrect(session, word) &&
