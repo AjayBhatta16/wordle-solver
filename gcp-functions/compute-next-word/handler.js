@@ -13,6 +13,8 @@ class ComputeNextWordHandler {
     }
 
     handle(request) {
+        console.log('Handling request:', request);
+        
         const validWords = this.getValidWords(request.session);
 
         const bestWord = this.getBestWord(validWords);
