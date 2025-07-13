@@ -3,7 +3,7 @@ package myfunction
 import (
 	"context"
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"slices"
@@ -44,7 +44,7 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 
 		session.LastUpdatedTimeStamp = time.Now().UnixMilli()
 
-		session = saveSession(dbClient, session)
+		session = updateSession(dbClient, session, session.firestoreID)
 
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(session)
@@ -66,7 +66,7 @@ func GetSessionID(url string) string {
 func GetDefaultSession() Session {
 	file, err := os.Open("default-session.json")
 	if err != nil {
-		fmt.Println("Error opening default session file:", err)
+		log.Println("GETSESSION - Error opening default session file:", err)
 		return Session{}
 	}
 	defer file.Close()
@@ -74,7 +74,7 @@ func GetDefaultSession() Session {
 	var session Session
 	decoder := json.NewDecoder(file)
 	if err := decoder.Decode(&session); err != nil {
-		fmt.Println("Error decoding default session:", err)
+		log.Println("GETSESSION - Error decoding default session:", err)
 		return Session{}
 	}
 
@@ -90,7 +90,19 @@ func saveSession(client *firestore.Client, session Session) Session {
 	_, _, err := client.Collection("sessions").Add(ctx, session)
 
 	if err != nil {
-		fmt.Println("Firestore write error", http.StatusInternalServerError)
+		log.Println("GETSESSION - Firestore write error", http.StatusInternalServerError)
+		return Session{}
+	}
+
+	return session
+}
+
+func updateSession(client *firestore.Client, session Session, firestoreID string) Session {
+	ctx := context.Background()
+	_, err := client.Collection("sessions").Doc(firestoreID).Set(ctx, session)
+
+	if err != nil {
+		log.Println("GETSESSION - Firestore update error", http.StatusInternalServerError)
 		return Session{}
 	}
 
@@ -103,17 +115,17 @@ func GetSessionByID(client *firestore.Client, sessionID string) (Session, error)
 	doc, err := iter.Next()
 
 	if err != nil {
-		fmt.Println("Error getting session:", err)
+		log.Println("GETSESSION - Error getting session:", err)
 		return Session{}, err
 	}
 
 	var session Session
 	if err := doc.DataTo(&session); err != nil {
-		fmt.Println("Error decoding session data:", err)
+		log.Println("GETSESSION - Error decoding session data:", err)
 		return Session{}, err
 	}
 
-	session.SessionId = doc.Ref.ID
+	session.firestoreID = doc.Ref.ID
 	session.LastUpdatedTimeStamp = time.Now().UnixMilli()
 
 	return session, nil

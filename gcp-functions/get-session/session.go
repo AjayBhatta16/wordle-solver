@@ -9,6 +9,7 @@ type Session struct {
 	Misplaced            []MisplacedLetter `json:"misplaced"`
 	Incorrect            []IncorrectLetter `json:"incorrect"`
 	NotWords             []string          `json:"notWords"`
+	firestoreID          string
 }
 
 type CorrectLetters struct {
