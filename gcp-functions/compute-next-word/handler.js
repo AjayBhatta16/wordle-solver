@@ -27,6 +27,7 @@ class ComputeNextWordHandler {
     }
 
     getValidWords(session) {
+        console.log('ComputeNextWordHandler - word count:', this.words.length);
         return this.words.filter(word =>
             this.validateWord(session, word)
         );
