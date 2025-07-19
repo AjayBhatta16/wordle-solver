@@ -60,7 +60,7 @@ class ComputeNextWordHandler {
     }
 
     checkIncorrect(session, word) {
-        return !session.incorrect.some(ch => word.indexOf(ch.toLowerCase()) !== -1);
+        return !session.incorrect.some(ch => word.indexOf(ch.value.toLowerCase()) !== -1);
     }
 
     checkNotWords(session, word) {
