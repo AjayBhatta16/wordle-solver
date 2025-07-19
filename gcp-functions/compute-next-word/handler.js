@@ -48,13 +48,14 @@ class ComputeNextWordHandler {
 
     checkCorrect(session, word) {
         return ![1, 2, 3, 4, 5].some(i => 
-            session.correct[`ch_${i}`].length > 0 && session.correct[`ch_${i}`] !== word[i - 1]
+            session.correct[`ch_${i}`].length > 0 && session.correct[`ch_${i}`].toLowerCase() !== word[i - 1]
         );
     }
 
     checkMisplaced(session, word) {
         return !session.misplaced.some(ch => 
-            word.indexOf(ch.value) === -1 || word[ch.pos] === ch.value
+            word.indexOf(ch.value.toLowerCase()) === -1 
+            || word[ch.pos] === ch.value.toLowerCase()
         );
     }
 
