@@ -13,7 +13,7 @@ class ComputeNextWordHandler {
     }
 
     handle(request) {
-        console.log('ComputeNextWordHandler - Handling request:', request);
+        console.log('ComputeNextWordHandler - Handling request:', JSON.stringify(request));
 
         const validWords = this.getValidWords(request.session);
 
@@ -63,7 +63,7 @@ class ComputeNextWordHandler {
     }
 
     checkNotWords(session, word) {
-        return !session.notwords.some(notWord => word === notWord);
+        return !session.notWords.some(notWord => word === notWord);
     }
 
     getBestWord(words) {
