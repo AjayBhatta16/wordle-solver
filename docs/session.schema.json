@@ -112,7 +112,7 @@
       "misplaced": [
         {
           "value": "A",
-          "pos": 1,
+          "pos": 0,
           "duplicate": false
         }
       ],
