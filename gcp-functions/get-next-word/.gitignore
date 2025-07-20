@@ -1,0 +1,5 @@
+#TODO: refactor shared package to make this work
+*.model.go
+
+common-solution.go
+session.go
