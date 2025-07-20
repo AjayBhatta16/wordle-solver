@@ -38,6 +38,7 @@ jobs:
     - name: Deploy Cloud Function
       run: |
         cd gcp-functions/get-next-word
+        rm -rf .gitignore
         chmod 700 deploy.sh
         ./deploy.sh
         
