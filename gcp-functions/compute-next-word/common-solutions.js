@@ -26,7 +26,7 @@ const session = {
     correct: { ch_1: '', ch_2: '', ch_3: '', ch_4: '', ch_5: '' },
     misplaced: [],
     incorrect: [],
-    notwords: []
+    notWords: []
 };
 
 function toSessionObj(num, word) {
@@ -56,7 +56,7 @@ function toSessionObj(num, word) {
                 return null;
             }).filter(o => o !== null)
         ],
-        notwords: []
+        notWords: []
     };
 }
 
