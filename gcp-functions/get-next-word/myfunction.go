@@ -71,6 +71,8 @@ func commonSolutionSearch(session Session) string {
 		strings.Join(session.GuessSequence, "-") + "-" + session.LastGuessFeedback,
 	)
 
+	log.Println("GETNEXTWORD - Searching for common solution with key:", solutionKey)
+
 	res, err := http.Get(os.Getenv("BASE_URI") + "/common-solution-search?key=" + solutionKey)
 
 	if err != nil {
@@ -82,6 +84,8 @@ func commonSolutionSearch(session Session) string {
 
 	var solution CommonSolution
 	json.NewDecoder(res.Body).Decode(&solution)
+
+	log.Println("GETNEXTWORD - common solution search response:", solution.SolutionValue)
 
 	return solution.SolutionValue
 }
