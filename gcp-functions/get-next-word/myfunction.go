@@ -121,6 +121,7 @@ func updateSession(client *firestore.Client, session Session) Session {
 	doc, err := iter.Next()
 
 	if err != nil {
+		log.Println("GETNEXTWORD - error retrieving existing session:", err)
 		log.Println("GETNEXTWORD - Firestore update error", http.StatusNotFound)
 		return Session{}
 	}
