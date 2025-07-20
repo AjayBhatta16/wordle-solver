@@ -19,7 +19,7 @@ jobs:
 
     - name: Copy models to function directory
       run: |
-        cd gcp-functions/get-session
+        cd gcp-functions/get-next-word
         cp ../golang-models/*.go .
 
     - name: Authenticate to GCP
@@ -38,8 +38,7 @@ jobs:
     - name: Deploy Cloud Function
       run: |
         cd gcp-functions/get-next-word
-        ls -la
-        rm -rf .gitignore
+        rm -f .gitignore
         chmod 700 deploy.sh
         ./deploy.sh
         
