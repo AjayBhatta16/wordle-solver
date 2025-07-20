@@ -115,6 +115,8 @@ func computeNextWord(session Session) string {
 func updateSession(client *firestore.Client, session Session) Session {
 	ctx := context.Background()
 
+	log.Println("GETNEXTWORD - Updating session in Firestore with sessionId:", session.SessionId)
+
 	iter := client.Collection("sessions").Where("sessionId", "==", session.SessionId).Limit(1).Documents(ctx)
 	doc, err := iter.Next()
 
@@ -122,6 +124,8 @@ func updateSession(client *firestore.Client, session Session) Session {
 		log.Println("GETNEXTWORD - Firestore update error", http.StatusNotFound)
 		return Session{}
 	}
+
+	log.Println("GETNEXTWORD - Updating Firestore document with ID:", doc.Ref.ID)
 
 	_, err = client.Collection("sessions").Doc(doc.Ref.ID).Set(ctx, session)
 
