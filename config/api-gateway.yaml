@@ -1,0 +1,37 @@
+swagger: "2.0"
+info:
+  title: WordBurglar API
+  description: WordBurglar API
+  version: 1.0.0
+
+schemes:
+  - https
+
+paths:
+  /session:
+    get:
+      summary: Get session data
+      operationId: getSession
+      parameters:
+        - name: sessionID
+          in: query
+          required: false
+          type: string
+          description: Optional session ID
+      responses:
+        "200":
+          description: Successful response
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-session
+
+  /next-word:
+    post:
+      summary: Get the next word
+      operationId: getNextWord
+      consumes:
+        - application/json
+      responses:
+        "200":
+          description: Successful response
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-next-word
