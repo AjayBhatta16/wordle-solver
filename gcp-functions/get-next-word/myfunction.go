@@ -19,6 +19,8 @@ func GetNextWord(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to create Firestore client", http.StatusInternalServerError)
 	}
 
+	defer dbClient.Close()
+
 	var session, err = getSessionFromRequestBody(r)
 
 	if err != nil {
@@ -48,8 +50,6 @@ func getDBClient() *firestore.Client {
 	if err != nil {
 		return nil
 	}
-
-	defer dbClient.Close()
 
 	return dbClient
 }
