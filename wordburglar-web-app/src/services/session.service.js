@@ -1,33 +1,25 @@
-import { of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
+import env from '../env'
 
 export default class SessionService {
     constructor() {}
 
     newSession() {
-        console.log('newSession - start')
-        return of({
-            sessionId: 'test-id',
-            guessSequence: [],
-            notWords: [],
-            correct: {},
-            misplaced: [],
-            incorrect: []
-        })
+        return ajax(`${env.API_GATEWAY_URI}/session`);
     }
 
     getSession(sessionId) {
-        return of({
-            sessionId: sessionId,
-            guessSequence: [],
-            notWords: [],
-            correct: {},
-            misplaced: [],
-            incorrect: []
-        })
+        return ajax(`${env.API_GATEWAY_URI}/session/${sessionId}`);
     }
 
     getNextWord(session) {
-        return of('AROSE')
+        return ajax({
+            url: `${env.API_GATEWAY_URI}/next-word`,
+            method: 'POST',
+            body: session,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 }

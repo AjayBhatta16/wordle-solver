@@ -39,6 +39,7 @@ func GetNextWord(w http.ResponseWriter, r *http.Request) {
 
 	session = updateSession(dbClient, session)
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(session)
 }

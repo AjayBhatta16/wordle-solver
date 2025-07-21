@@ -51,6 +51,7 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 
 		session = updateSession(dbClient, session, session.firestoreID)
 
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(session)
 	}
