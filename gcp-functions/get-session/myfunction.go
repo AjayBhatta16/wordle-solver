@@ -22,6 +22,7 @@ var defaultSessionJSON []byte
 func GetSession(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, x-requested-with")
 
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusNoContent)

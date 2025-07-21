@@ -15,6 +15,7 @@ import (
 func GetNextWord(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, x-requested-with")
 
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusNoContent)
