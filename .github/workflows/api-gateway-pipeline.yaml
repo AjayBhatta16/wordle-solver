@@ -23,7 +23,6 @@ jobs:
 
       - name: Install gcloud components
         run: |
-          gcloud components update
           gcloud components install api-gateway
 
       - name: Set project and region
