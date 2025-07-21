@@ -32,7 +32,7 @@ paths:
         "200":
           description: Successful response
       x-google-backend:
-        address: https://FUNCTIONS_URI/get-session
+        address: https://FUNCTIONS_URI/get-session/{sessionID}
 
   /next-word:
     post:
