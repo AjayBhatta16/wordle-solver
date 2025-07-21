@@ -10,12 +10,22 @@ schemes:
 paths:
   /session:
     get:
-      summary: Get session data
-      operationId: getSession
+      summary: Get a new session
+      operationId: getNewSession
+      responses:
+        "200":
+          description: Successful response
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-session
+
+  /session/{sessionID}:
+    get:
+      summary: Get session by ID
+      operationId: getSessionByID
       parameters:
         - name: sessionID
-          in: query
-          required: false
+          in: path
+          required: true
           type: string
           description: Optional session ID
       responses:
