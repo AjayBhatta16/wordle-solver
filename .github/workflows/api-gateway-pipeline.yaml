@@ -16,6 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Copy functions URI to API Gateway config
+        run: |
+          sed -i "s/FUNCTIONS_URI/$FUNCTIONS_URI/g" config/api-gateway.yaml
+        env:
+            FUNCTIONS_URI: ${{ secrets.GCP_FUNCTIONS_URI }}
+
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
         with:
