@@ -43,7 +43,7 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 		session, err := GetSessionByID(dbClient, sessionID)
 
 		if err != nil {
-			http.Error(w, "Session not found: "+err.Error(), http.StatusNotFound)
+			http.Error(w, "Session "+sessionID+" not found: "+err.Error(), http.StatusNotFound)
 			return
 		}
 
