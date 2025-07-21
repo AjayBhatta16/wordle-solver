@@ -21,6 +21,7 @@ var defaultSessionJSON []byte
 
 func GetSession(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusNoContent)
@@ -58,7 +59,6 @@ func GetSession(w http.ResponseWriter, r *http.Request) {
 
 		session = updateSession(dbClient, session, session.firestoreID)
 
-		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(session)
 	}
