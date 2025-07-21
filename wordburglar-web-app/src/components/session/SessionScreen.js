@@ -21,6 +21,8 @@ export default function SessionScreen() {
         }
     }, [])
 
+    console.log('SessionScreen render', session)
+
     return (
         <>
             <Header />

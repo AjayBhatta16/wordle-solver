@@ -5,6 +5,8 @@ import LetterTile from './LetterTile'
 import * as ActiveWordActions from '../../state/actions/active-word.actions'
 
 export default function WordRow(props) {    
+    console.log('WordRow - render', props.word, props.active, props.index)
+    
     const dispatch = useDispatch()
     const disabled = useSelector((state) => {
         return state.activeWord.board.some(status => 

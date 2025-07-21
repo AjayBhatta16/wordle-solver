@@ -39,7 +39,7 @@ const nextWordEpic = (action$) => {
         switchMap((action) => {
             const sessionService = new SessionService();
             return sessionService.getNextWord(action.session).pipe(
-                map((word) => SessionActions.nextWordSuccess(action.session, word)),
+                map((session) => SessionActions.nextWordSuccess(session)),
                 catchError((error) => of(SessionActions.nextWordFailure(error)))
             )
         })
@@ -49,7 +49,7 @@ const nextWordEpic = (action$) => {
 const nextWordSuccessEpic = (action$) => {
     return action$.pipe(
         ofType(SessionActions.TypeConstants.NEXT_WORD_SUCCESS),
-        map((action) => ActiveWordActions.resetBoard(action.word))
+        map((action) => ActiveWordActions.resetBoard([...action.updatedSession.guessSequence].reverse()[0]))
     )
 }
 

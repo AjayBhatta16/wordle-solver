@@ -45,10 +45,9 @@ export const nextWordRequest = (session) => ({
     session
 })
 
-export const nextWordSuccess = (session, word) => ({
+export const nextWordSuccess = (updatedSession) => ({
     type: TypeConstants.NEXT_WORD_SUCCESS,
-    session,
-    word
+    updatedSession
 })
 
 export const nextWordFailure = (error) => ({

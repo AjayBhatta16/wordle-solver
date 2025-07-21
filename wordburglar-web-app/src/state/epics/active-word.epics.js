@@ -16,10 +16,17 @@ function compressStatus(statusCode) {
     }
 }
 
-const notAWordEpic = (action$) => {
+const notAWordEpic = (action$, state$) => {
     return action$.pipe(
         ofType(ActiveWordActions.TypeConstants.NOT_A_WORD),
-        map((action) => SessionActions.updateSessionData({ notAWord: action.word }))
+        withLatestFrom(state$),
+        map(([action, state]) => SessionActions.updateSessionData({ 
+            ...state.session.session,
+            notWords: [
+                ...state.session.session.notWords ?? [],
+                action.word,
+            ] 
+        }))
     )
 }
 
