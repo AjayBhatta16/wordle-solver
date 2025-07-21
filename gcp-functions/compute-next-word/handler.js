@@ -64,7 +64,7 @@ class ComputeNextWordHandler {
     }
 
     checkNotWords(session, word) {
-        return !session.notWords.some(notWord => word === notWord);
+        return !session.notWords.some(notWord => word.toLowerCase() === notWord.toLowerCase());
     }
 
     getBestWord(words) {

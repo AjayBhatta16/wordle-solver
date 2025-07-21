@@ -39,8 +39,15 @@ func GetNextWord(w http.ResponseWriter, r *http.Request) {
 
 	nextWord := commonSolutionSearch(session)
 
-	if nextWord == "" {
+	if strings.EqualFold(nextWord, "") {
 		nextWord = computeNextWord(session)
+	} else {
+		for _, word := range session.NotWords {
+			if strings.EqualFold(strings.ToLower(nextWord), strings.ToLower(word)) {
+				nextWord = computeNextWord(session)
+				break
+			}
+		}
 	}
 
 	session.GuessSequence = append(session.GuessSequence, nextWord)
