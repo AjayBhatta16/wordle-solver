@@ -17,7 +17,7 @@ export default function SessionScreen() {
         if (session === null && !!sessionId) {
             dispatch(SessionActions.getSessionRequest(sessionId))
         } else if (!!session) {
-            dispatch(SessionActions.nextWordRequest(session))
+            // dispatch(SessionActions.nextWordRequest(session))
         }
     }, [])
 

@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators'
 import { ajax } from 'rxjs/ajax'
 import env from '../env'
 
@@ -5,11 +6,15 @@ export default class SessionService {
     constructor() {}
 
     newSession() {
-        return ajax(`${env.API_GATEWAY_URI}/session`);
+        return ajax(`${env.API_GATEWAY_URI}/session`).pipe(
+            map(response => response.response)
+        );
     }
 
     getSession(sessionId) {
-        return ajax(`${env.API_GATEWAY_URI}/session/${sessionId}`);
+        return ajax(`${env.API_GATEWAY_URI}/session/${sessionId}`).pipe(
+            map(response => response.response)
+        );
     }
 
     getNextWord(session) {
@@ -20,6 +25,8 @@ export default class SessionService {
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+        }).pipe(
+            map(response => response.response)
+        );
     }
 }

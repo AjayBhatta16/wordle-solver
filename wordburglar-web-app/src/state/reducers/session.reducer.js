@@ -24,7 +24,7 @@ export const session = (state = initialState, action) => {
                 error: null,
             }
         case SessionActions.TypeConstants.NEW_SESSION_SUCCESS:
-            console.log('NEW_SESSION_SUCCESS - reducer - start')
+            console.log('NEW_SESSION_SUCCESS - reducer - start', action.session)
             return {
                 ...state,
                 loading: false,

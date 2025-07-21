@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import LetterTile from './LetterTile'
 import * as ActiveWordActions from '../../state/actions/active-word.actions'
 
-export default function WordRow(props) {
+export default function WordRow(props) {    
     const dispatch = useDispatch()
     const disabled = useSelector((state) => {
         return state.activeWord.board.some(status => 
