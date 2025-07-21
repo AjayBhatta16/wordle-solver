@@ -24,10 +24,9 @@ jobs:
       - name: Setup GCloud CLI
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Set project and region
+      - name: Set project
         run: |
           gcloud config set project ${{ secrets.GCP_PROJECT_NAME }}
-          gcloud config set api/api_gateway/region ${{ secrets.GCP_REGION }}
 
       - name: Upload and deploy API config
         run: |
