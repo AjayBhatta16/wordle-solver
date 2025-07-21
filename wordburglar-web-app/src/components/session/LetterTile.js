@@ -38,7 +38,7 @@ export default function LetterTile(props) {
             <div 
                 className={`${getStatusColorClass(status)} letter-tile d-flex justify-content-center align-items-center w-100 font-bold mb-2`}
             >
-                {props.letter}
+                {props.letter.toUpperCase()}
             </div>
             {
                 props.active && (

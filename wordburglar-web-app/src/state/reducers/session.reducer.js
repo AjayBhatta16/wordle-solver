@@ -66,11 +66,7 @@ export const session = (state = initialState, action) => {
                 loading: false,
                 session: {
                     ...state.session,
-                    ...action.session,
-                    guessSequence: [
-                        ...state.session.guessSequence,
-                        action.word
-                    ]
+                    ...action.updatedSession,
                 }
             } 
         case SessionActions.TypeConstants.NEXT_WORD_FAILURE:

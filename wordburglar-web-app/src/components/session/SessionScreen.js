@@ -29,7 +29,7 @@ export default function SessionScreen() {
             <StandardContainer>
                 <div className="mt-5">
                     {
-                        (session.guessSequence ?? []).reverse().map((word, index) => (
+                        [...(session.guessSequence ?? [])].reverse().map((word, index) => (
                             <WordRow
                                 key={index}
                                 index={index}
