@@ -18,6 +18,15 @@ paths:
       x-google-backend:
         address: https://FUNCTIONS_URI/get-session
 
+    options:
+      summary: Preflight support for getNewSession
+      operationId: getNewSession_PF
+      responses:
+        "204":
+          description: No content
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-session
+
   /session/{sessionID}:
     get:
       summary: Get session by ID
@@ -35,6 +44,22 @@ paths:
         address: https://FUNCTIONS_URI/get-session
         pathTranslation: APPEND_PATH_TO_ADDRESS
 
+    options:
+      summary: Preflight support for getSessionByID
+      operationId: getSessionByID_PF
+      parameters:
+        - name: sessionID
+          in: path
+          required: true
+          type: string
+          description: Optional session ID
+      responses:
+        "204":
+          description: No content
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-session
+        pathTranslation: APPEND_PATH_TO_ADDRESS
+
   /next-word:
     post:
       summary: Get the next word
@@ -44,5 +69,16 @@ paths:
       responses:
         "200":
           description: Successful response
+      x-google-backend:
+        address: https://FUNCTIONS_URI/get-next-word
+
+    options:
+      summary: Preflight support for getNextWord
+      operationId: getNextWord_PF
+      consumes:
+        - application/json
+      responses:
+        "204":
+          description: No content
       x-google-backend:
         address: https://FUNCTIONS_URI/get-next-word

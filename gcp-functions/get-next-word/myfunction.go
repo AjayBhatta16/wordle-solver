@@ -13,6 +13,13 @@ import (
 )
 
 func GetNextWord(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	var dbClient = getDBClient()
 
 	if dbClient == nil {

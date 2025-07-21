@@ -20,6 +20,13 @@ import (
 var defaultSessionJSON []byte
 
 func GetSession(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	ctx := context.Background()
 	dbClient, err := firestore.NewClient(ctx, os.Getenv("PROJECT_ID"))
 
