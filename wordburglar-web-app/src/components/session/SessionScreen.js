@@ -14,10 +14,8 @@ export default function SessionScreen() {
 
     useEffect(() => {
         const sessionId = location.pathname.split('/').pop()
-        if (session === null && !!sessionId) {
+        if (session.sessionID === null && !!sessionId) {
             dispatch(SessionActions.getSessionRequest(sessionId))
-        } else if (!!session) {
-            // dispatch(SessionActions.nextWordRequest(session))
         }
     }, [])
 
