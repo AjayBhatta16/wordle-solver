@@ -8,11 +8,11 @@ import { of } from 'rxjs';
 function compressStatus(statusCode) {
     switch (statusCode) {
         case ActiveWordActions.GuessStatusTypes.CORRECT:
-            return 'c'
+            return '0'
         case ActiveWordActions.GuessStatusTypes.MISPLACED:
-            return 'm'
+            return '1'
         case ActiveWordActions.GuessStatusTypes.INCORRECT:
-            return 'w'
+            return '2'
     }
 }
 
@@ -35,11 +35,32 @@ const guessSubmitEpic = (action$, state$) => {
         ofType(ActiveWordActions.TypeConstants.GUESS_SUBMIT),
         withLatestFrom(state$),
         map(([action, state]) => {
+            console.log('guessSubmitEpic', state)
             const compressedStatus = state.activeWord.board
                 .map((status) => compressStatus(status))
-                .join('')
+                .join('');
+
+            let requestSession = state.session.session;
+
+            state.activeWord.board.forEach((ch, idx) => {
+                const letter = [...state.session.session.guessSequence ?? []].reverse()[0][idx];
+
+                if (ch === ActiveWordActions.GuessStatusTypes.CORRECT) {
+                    requestSession.correct[`ch_${idx+1}`] = letter;
+                } else if (ch === ActiveWordActions.GuessStatusTypes.MISPLACED) {
+                    requestSession.misplaced.push({
+                        pos: idx,
+                        value: letter,
+                    });
+                } else if (ch === ActiveWordActions.GuessStatusTypes.INCORRECT) {
+                    requestSession.incorrect.push({
+                        value: letter,
+                    });
+                }
+            });
 
             return SessionActions.updateSessionData({ 
+                ...requestSession,
                 lastGuessFeedback: compressedStatus,
             });
         })

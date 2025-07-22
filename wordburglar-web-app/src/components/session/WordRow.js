@@ -34,7 +34,12 @@ export default function WordRow(props) {
                 />
             ))}
             {
-                props.active && (
+                !props.word && (
+                    <p className="text-white">No words match your criteria</p>
+                )
+            }
+            {
+                (props.active && !!props.word) && (
                     <div className="d-flex flex-column mt-2 ml-2">
                         <button 
                             className="btn btn-secondary mb-2"

@@ -27,26 +27,16 @@ export const activeWord = (state = initialState, action) => {
                     }
                 ]
             }
-        case ActiveWordActions.TypeConstants.GUESS_SUBMIT:
-            if (state.board.some(status => status === ActiveWordActions.GuessStatusTypes.BLANK)) {
-                return state
-            }
-
+        case ActiveWordActions.TypeConstants.RESET_BOARD:
             return {
                 ...state,
-                board: Array(5).fill(ActiveWordActions.GuessStatusTypes.BLANK),
-                activeWord: '',
                 wordHistory: [
                     ...state.wordHistory,
                     { 
                         word: state.activeWord,
                         statusCodes: state.board,
                     }
-                ]
-            }
-        case ActiveWordActions.TypeConstants.RESET_BOARD:
-            return {
-                ...state,
+                ],
                 board: Array(5).fill(ActiveWordActions.GuessStatusTypes.BLANK),
                 activeWord: action.newWord,
             }
